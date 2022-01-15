@@ -19,7 +19,7 @@ const styles = {
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { signInUser, error } = useAuth()
+  const { signInUser, error, singOutUser } = useAuth()
   const location = useLocation()
   const navigate = useNavigate()
   const handleSignIn = (e) => {
@@ -27,8 +27,14 @@ const Login = () => {
     if (error.length) {
       alert('Invailed Email or Password')
       return
+    } else {
+      signInUser(email, password, location, navigate)
+      setTimeout(function () {
+        sessionStorage.clear();
+        singOutUser()
+        navigate('/login')
+      }, (5 * 60 * 1000))
     }
-    signInUser(email, password, location, navigate)
   }
 
   return (
@@ -51,7 +57,7 @@ const Login = () => {
             sx={{ width: "100%", mt: 2, mb: 4 }}
             onBlur={(e) => setPassword(e.target.value)}
           />
-          <Button type='submit' style={styles.root} >Submit</Button>
+          <Button type='submit' style={styles.root} >Login</Button>
         </form>
       </Box>
     </Box>

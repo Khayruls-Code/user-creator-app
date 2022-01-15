@@ -9,10 +9,11 @@ const AdminRoute = ({ children }) => {
   if (isLoading) {
     return <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100vh" }}><CircularProgress /></Box>
   }
-  if (!user.email) {
+  if (user.email) {
+    return children;
+  } else {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  return children;
 };
 
 export default AdminRoute;

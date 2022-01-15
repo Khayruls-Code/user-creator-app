@@ -44,6 +44,12 @@ const Dashboard = (props) => {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleSignOut = (e) => {
+    e.preventDefault()
+    singOutUser()
+    sessionStorage.clear();
+  }
+
   const drawer = (
     <div>
       <Toolbar />
@@ -58,7 +64,7 @@ const Dashboard = (props) => {
             Add User
           </ListItem>
         </NavLink>
-        <ListItem onClick={singOutUser} style={styles.primary} button>
+        <ListItem onClick={handleSignOut} style={styles.primary} button>
           Logout
         </ListItem>
       </List>
