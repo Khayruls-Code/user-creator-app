@@ -32,7 +32,7 @@ export const errorMessage = (payload) => {
 }
 export const getUser = () => {
   return (dispatch) => {
-    axios.get('http://localhost:5000/users', {
+    axios.get('https://tranquil-forest-13799.herokuapp.com/users', {
       headers: {
         authorization: 'Bearer ' + sessionStorage.getItem('idToken')
       }
@@ -50,7 +50,7 @@ export const getUser = () => {
 
 export const getDeleteUser = (id) => {
   return (dispatch) => {
-    axios.delete(`http://localhost:5000/users/${id}`)
+    axios.delete(`https://tranquil-forest-13799.herokuapp.com/users/${id}`)
       .then(res => {
         dispatch(deleteUser(res.data))
         dispatch(getUser())
@@ -63,7 +63,7 @@ export const getDeleteUser = (id) => {
 
 export const getAddedUser = (user) => {
   return (dispatch) => {
-    axios.post('http://localhost:5000/users', user)
+    axios.post('https://tranquil-forest-13799.herokuapp.com/users', user)
       .then(res => {
         dispatch(addUser(res.data))
         dispatch(getUser())
